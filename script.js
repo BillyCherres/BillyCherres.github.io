@@ -76,7 +76,7 @@ prevExp.addEventListener("click", () =>{
 }); 
 
 resume.addEventListener("click", () =>{
-    window.open("Resume2026.pdf", "_blank");
+    window.location.href = "Resume2026.pdf";
 });
 
 //############################# End of Home Page ################################################
