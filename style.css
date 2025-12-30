@@ -87,6 +87,7 @@
     box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
   }
   
+  
   /* =========================
      Experience section text
      ========================= */
@@ -158,5 +159,65 @@
   button:active {
     transform: translateY(0);
     box-shadow: none;
+  }
+  
+  /* =========================
+     Projects section
+     ========================= */
+
+  #ProjectLeadIn {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 12px;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+  }
+
+  #projectsStatus{
+    color: var(--text-light);
+    margin-top: 8px;
+  }
+  
+  .project-item{
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 12px;
+    background: #ffffff;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .project-item:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.10);
+  }
+  
+  .project-title{
+    display: inline-block;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
+  
+  .project-title:hover{
+    text-decoration: underline;
+  }
+  
+  .project-desc{
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+  
+  .project-meta{
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    flex-wrap: wrap;
   }
   

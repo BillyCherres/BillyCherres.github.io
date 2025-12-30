@@ -26,6 +26,8 @@ let myExpSkills = document.querySelector("#experienceSkills");
 let nextExp = document.querySelector("#btnExpN");
 let prevExp = document.querySelector("#btnExpP");
 let resume = document.querySelector("#resume");
+let projectsContainer = document.querySelector("#projects");
+let projectsStatus = document.querySelector("#projectsStatus");
 
 
 let user = {
@@ -79,6 +81,72 @@ resume.addEventListener("click", () =>{
     window.location.href = "Resume2026.pdf";
 });
 
+const pinnedRepos = [
+    "BillyCherres.github.io",
+    "fcbSeries",
+    "SonyAlphaSeries",
+    "ArtificialLifeSimulator"
+  ];
+
+async function loadGitHubProjects() {
+    // Show loading state
+    projectsStatus.textContent = "Loading projects...";
+  
+    try {
+      const url = "https://api.github.com/users/billycherres/repos?sort=updated&per_page=6";
+      const res = await fetch(url);
+  
+      if (!res.ok) {
+        throw new Error(`GitHub API error: ${res.status}`);
+      }
+  
+      const repos = await res.json();
+  
+      // Optional: filter out forks
+      const filtered = repos.filter(
+        repo => pinnedRepos.includes(repo.name)
+      );
+  
+      // If no repos found
+      if (filtered.length === 0) {
+        projectsStatus.textContent = "No projects found.";
+        return;
+      }
+  
+      // Clear status once we have data
+      projectsStatus.textContent = "";
+  
+      // Build HTML
+      projectsContainer.innerHTML = filtered.map(repo => {
+        const description = repo.description ? repo.description : "No description yet.";
+        const language = repo.language ? repo.language : "N/A";
+        const stars = repo.stargazers_count ?? 0;
+        const updated = new Date(repo.updated_at).toLocaleDateString();
+  
+        return `
+          <div class="project-item">
+            <a class="project-title" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+              ${repo.name}
+            </a>
+            <p class="project-desc">${description}</p>
+            <p class="project-meta">
+              <span>${language}</span>
+              <span>★ ${stars}</span>
+              <span>Updated: ${updated}</span>
+            </p>
+          </div>
+        `;
+      }).join("");
+  
+    } catch (err) {
+      projectsStatus.textContent = "Couldn’t load projects right now.";
+      projectsContainer.innerHTML = "";
+      console.error(err);
+    }
+  }
+  
+  // Run it once when the page loads
+  loadGitHubProjects();
 //############################# End of Home Page ################################################
 
 
