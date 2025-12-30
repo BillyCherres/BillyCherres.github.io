@@ -1,0 +1,162 @@
+/* =========================
+   Global variables (colors)
+   ========================= */
+   :root {
+    --primary: #2563eb;        /* main accent */
+    --primary-soft: #dbeafe;   /* light tint */
+    --text-dark: #111827;
+    --text-medium: #374151;
+    --text-light: #6b7280;
+    --card-bg: #ffffff;
+    --page-bg: #f3f4f6;
+  }
+  
+  /* =========================
+     Reset
+     ========================= */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* =========================
+     Page layout
+     ========================= */
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: var(--page-bg);
+    color: var(--text-dark);
+  }
+  
+  .page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 16px;
+  }
+  
+  /* =========================
+     Headings
+     ========================= */
+  h1 {
+    font-size: 2.6rem;
+    margin-bottom: 4px;
+    color: #0f172a;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin: 12px 0 18px;
+    color: var(--primary);
+  }
+  
+  /* =========================
+     About Me
+     ========================= */
+  #aboutMeLeadIn {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 10px;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+  }
+  
+  #aboutMeDescription {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+  }
+  
+  /* =========================
+     Cards (shared)
+     ========================= */
+  .experience-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .experience-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+  }
+  
+  /* =========================
+     Experience section text
+     ========================= */
+  #ExpLeadIn {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 10px;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+  }
+  
+  #experienceTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  
+  #experienceDate,
+  #experienceLocation,
+  #experienceSkills {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  
+  #experienceSkills {
+    font-style: italic;
+  }
+  
+  #experienceDescription {
+    margin-top: 10px;
+    line-height: 1.6;
+    font-size: 0.98rem;
+  }
+  
+  /* =========================
+     Buttons
+     ========================= */
+  .experience-buttons {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  button {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--primary);
+    background: #ffffff;
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition:
+      transform 0.12s ease,
+      box-shadow 0.12s ease,
+      background 0.12s ease,
+      color 0.12s ease;
+  }
+  
+  button:hover {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
