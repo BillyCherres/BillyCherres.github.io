@@ -25,6 +25,7 @@ let myExpDescription = document.querySelector("#experienceDescription");
 let myExpSkills = document.querySelector("#experienceSkills");
 let nextExp = document.querySelector("#btnExpN");
 let prevExp = document.querySelector("#btnExpP");
+let resume = document.querySelector("#resume");
 
 
 let user = {
@@ -73,6 +74,10 @@ prevExp.addEventListener("click", () =>{
         myExpSkills.textContent = user.exp2[4];
     }
 }); 
+
+resume.addEventListener("click", () =>{
+    window.open("Resume2026.pdf", "_blank");
+});
 
 //############################# End of Home Page ################################################
 
