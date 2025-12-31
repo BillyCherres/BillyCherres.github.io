@@ -150,5 +150,56 @@ async function loadGitHubProjects() {
 //############################# End of Home Page ################################################
 
 
+//############################# API work ################################################
+const API_ENDPOINT = "https://billy-contact-api.billycodes23.workers.dev/api/contact";
+
+contactForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    const name = document.querySelector("#contactName").value.trim();
+    const email = document.querySelector("#contactEmail").value.trim();
+    const message = document.querySelector("#contactMessage").value.trim();
+    const gotcha = document.querySelector("#gotcha").value.trim(); // honeypot
+    const contactForm = document.querySelector("#contactForm");
+    const contactStatus = document.querySelector("#contactStatus");
+    const contactSendBtn = document.querySelector("#contactSendBtn");
 
 
+    if(!name || !email || !message){
+        contactStatus.textContent = "Please fill out all fields";
+        return;
+    }
+
+    contactSendBtn.disabled = true;
+    contactSendBtn.textContent = "Sending...";
+    contactStatus.textContent = "";
+
+    try{
+        const res = await fetch(API_ENDPOINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                message,
+                gotcha, // bots get caught here
+              }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+            throw new Error(data.error || "Request failed");
+          }
+        contactStatus.textContent =
+            "Message sent successfully! I’ll get back to you soon.";
+        contactForm.reset();
+    } catch (err) {
+        console.error(err);
+        contactStatus.textContent =
+        "Couldn’t send message right now. Please try again later.";
+    } finally {
+        contactSendBtn.disabled = false;
+        contactSendBtn.textContent = "Send";
+    }
+});

@@ -69,6 +69,48 @@
         <div id="projects"></div>
         
       </div>
+
+      <div class="experience-card">
+        <p id="ContactLeadIn">Contact</p>
+      
+        <form id="contactForm">
+          <!-- Honeypot (anti-bot). Humans won't see this. -->
+          <input type="text" id="gotcha" name="gotcha" autocomplete="off" />
+      
+          <label for="contactName">Name</label>
+          <input
+            id="contactName"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            required
+          />
+      
+          <label for="contactEmail">Email</label>
+          <input
+            id="contactEmail"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+          />
+      
+          <label for="contactMessage">Message</label>
+          <textarea
+            id="contactMessage"
+            name="message"
+            rows="5"
+            placeholder="Write your message..."
+            required
+          ></textarea>
+      
+          <div class="contact-actions">
+            <button type="submit" id="contactSendBtn">Send</button>
+            <p id="contactStatus" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+      
       
       <!-- <button id="btn1">Increment</button>
       <button id="btn2">Decrement</button> -->

@@ -280,4 +280,63 @@
     font-size: 0.9rem;
     flex-wrap: wrap;
   }
-  
+
+    /* =========================
+     Contact Submission Card
+     ========================= */
+     #ContactLeadIn {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      margin-bottom: 12px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+    
+    #contactForm {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    
+    #contactForm label {
+      font-size: 0.95rem;
+      color: var(--text-medium);
+      font-weight: 600;
+    }
+    
+    #contactForm input,
+    #contactForm textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      outline: none;
+      font-size: 1rem;
+      background: #ffffff;
+    }
+    
+    #contactForm input:focus,
+    #contactForm textarea:focus {
+      border-color: rgba(37, 99, 235, 0.6);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    }
+    
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    
+    #contactStatus {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+    
+    /* Honeypot hidden */
+    #gotcha {
+      display: none;
+    }
+    
