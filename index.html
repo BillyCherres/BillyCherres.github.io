@@ -115,6 +115,42 @@
       <!-- <button id="btn1">Increment</button>
       <button id="btn2">Decrement</button> -->
     </div> 
+
+    <!-- ===== Resume Chatbot Widget ===== -->
+<button id="chatFab" aria-label="Open chat" title="Ask about my resume">
+  Ask my AI chatbot about my work
+</button>
+
+<section id="chatWidget" class="chat-hidden" aria-label="Resume assistant">
+  <header id="chatHeader">
+    <div>
+      <div id="chatTitle">Portfolio Assistant</div>
+      <div id="chatSubtitle">Ask about my resume • resume-only answers</div>
+    </div>
+    <button id="chatClose" aria-label="Close chat" title="Close">✕</button>
+  </header>
+
+  <div id="chatQuick">
+    <button class="chatQuickBtn" data-q="Summarize my experience in 3 bullets.">Summarize</button>
+    <button class="chatQuickBtn" data-q="What did I do at Flexera?">Flexera</button>
+    <button class="chatQuickBtn" data-q="What did I do at Sony?">Sony</button>
+    <button class="chatQuickBtn" data-q="List my technical skills.">Skills</button>
+  </div>
+
+  <main id="chatMessages" role="log" aria-live="polite"></main>
+
+  <form id="chatForm">
+    <input
+      id="chatInput"
+      type="text"
+      placeholder="Ask a question..."
+      autocomplete="off"
+      maxlength="400"
+    />
+    <button id="chatSend" type="submit">Send</button>
+  </form>
+</section>
+
   
     <script src="script.js?v=1.0.3"></script>
     

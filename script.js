@@ -203,3 +203,92 @@ contactForm.addEventListener("submit", async (e)=>{
         contactSendBtn.textContent = "Send";
     }
 });
+
+// ===== Resume Chatbot Frontend =====
+const CHAT_ENDPOINT = "https://resumereviewai.billycodes23.workers.dev/api/chat";
+
+const chatFab = document.querySelector("#chatFab");
+const chatWidget = document.querySelector("#chatWidget");
+const chatClose = document.querySelector("#chatClose");
+const chatForm = document.querySelector("#chatForm");
+const chatInput = document.querySelector("#chatInput");
+const chatMessages = document.querySelector("#chatMessages");
+const quickBtns = document.querySelectorAll(".chatQuickBtn");
+
+function toggleChat(open) {
+    if (!chatWidget) return;
+  
+    // If open is passed: open/close explicitly
+    if (typeof open === "boolean") {
+      chatWidget.classList.toggle("chat-hidden", !open);
+      if (open) setTimeout(() => chatInput?.focus(), 50);
+      return;
+    }
+  
+    // Otherwise: toggle
+    const isHidden = chatWidget.classList.contains("chat-hidden");
+    chatWidget.classList.toggle("chat-hidden", !isHidden);
+    if (isHidden) setTimeout(() => chatInput?.focus(), 50);
+  }
+
+function addMessage(text, who) {
+  const div = document.createElement("div");
+  div.className = `chatMsg ${who === "user" ? "chatUser" : "chatBot"}`;
+  div.textContent = text;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return div;
+}
+
+async function askAssistant(message) {
+  const res = await fetch(CHAT_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
+  });
+
+  // Worker always returns JSON in our setup
+  const data = await res.json().catch(() => ({}));
+  return data;
+}
+
+chatFab?.addEventListener("click", () => toggleChat(true));
+chatClose?.addEventListener("click", () => toggleChat(false));
+
+quickBtns.forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const q = btn.getAttribute("data-q");
+    if (!q) return;
+    toggleChat(true);
+    chatInput.value = q;
+    chatForm.requestSubmit();
+  });
+});
+
+// Optional: greet once
+let greeted = false;
+function maybeGreet() {
+  if (greeted) return;
+  greeted = true;
+  addMessage("Hey — ask me anything about my resume (I won’t guess beyond it).", "bot");
+}
+chatFab?.addEventListener("click", maybeGreet);
+
+chatForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const msg = (chatInput.value || "").trim();
+  if (!msg) return;
+
+  addMessage(msg, "user");
+  chatInput.value = "";
+
+  const loadingNode = addMessage("…", "bot");
+
+  try {
+    const data = await askAssistant(msg);
+    loadingNode.textContent = data.reply || "No reply received.";
+  } catch (err) {
+    loadingNode.textContent = "Couldn’t reach the assistant. Please try again.";
+  }
+});
