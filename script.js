@@ -271,7 +271,7 @@ let greeted = false;
 function maybeGreet() {
   if (greeted) return;
   greeted = true;
-  addMessage("Hey — ask me anything about my resume (I won’t guess beyond it).", "bot");
+  addMessage("Hey — ask me anything about my experiences.", "bot");
 }
 chatFab?.addEventListener("click", maybeGreet);
 
