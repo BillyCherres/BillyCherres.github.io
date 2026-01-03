@@ -82,6 +82,7 @@ resume.addEventListener("click", () =>{
 });
 
 const pinnedRepos = [
+    "BrawlStarsTeamGuide",
     "BillyCherres.github.io",
     "fcbSeries",
     "SonyAlphaSeries",
