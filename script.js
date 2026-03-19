@@ -194,7 +194,7 @@ contactForm.addEventListener("submit", async (e)=>{
     }
 });
 
-// ===== Resume Chatbot Frontend =====
+/* ===== Resume Chatbot Frontend (hidden for now) =====
 const CHAT_ENDPOINT = "https://resumereviewai.billycodes23.workers.dev/api/chat";
 
 const chatFab = document.querySelector("#chatFab");
@@ -282,3 +282,4 @@ chatForm?.addEventListener("submit", async (e) => {
     loadingNode.textContent = "Couldn’t reach the assistant. Please try again.";
   }
 });
+===== End Chatbot Frontend ===== */
