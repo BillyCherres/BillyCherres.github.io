@@ -81,74 +81,62 @@ resume.addEventListener("click", () =>{
     window.location.href = "Resume2026.pdf";
 });
 
-const pinnedRepos = [
-    "notes-api",
-    "BrawlStarsTeamGuide",
-    "BillyCherres.github.io",
-    "fcbSeries",
-    "SonyAlphaSeries",
-    "ArtificialLifeSimulator"
-  ];
-
-async function loadGitHubProjects() {
-    // Show loading state
-    projectsStatus.textContent = "Loading projects...";
-  
-    try {
-      const url = "https://api.github.com/users/billycherres/repos?sort=updated&per_page=6";
-      const res = await fetch(url);
-  
-      if (!res.ok) {
-        throw new Error(`GitHub API error: ${res.status}`);
-      }
-  
-      const repos = await res.json();
-  
-      // Optional: filter out forks
-      const filtered = repos.filter(
-        repo => pinnedRepos.includes(repo.name)
-      );
-  
-      // If no repos found
-      if (filtered.length === 0) {
-        projectsStatus.textContent = "No projects found.";
-        return;
-      }
-  
-      // Clear status once we have data
-      projectsStatus.textContent = "";
-  
-      // Build HTML
-      projectsContainer.innerHTML = filtered.map(repo => {
-        const description = repo.description ? repo.description : "No description yet.";
-        const language = repo.language ? repo.language : "N/A";
-        const stars = repo.stargazers_count ?? 0;
-        const updated = new Date(repo.updated_at).toLocaleDateString();
-  
-        return `
-          <div class="project-item">
-            <a class="project-title" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-              ${repo.name}
-            </a>
-            <p class="project-desc">${description}</p>
-            <p class="project-meta">
-              <span>${language}</span>
-              <span>★ ${stars}</span>
-              <span>Updated: ${updated}</span>
-            </p>
-          </div>
-        `;
-      }).join("");
-  
-    } catch (err) {
-      projectsStatus.textContent = "Couldn’t load projects right now.";
-      projectsContainer.innerHTML = "";
-      console.error(err);
-    }
+const projectSections = [
+  {
+    label: "Low Level Engineering",
+    projects: [
+      {
+        name: "FCB Series",
+        description: "Linux-based controller interfaces for Sony FCB security block cameras using C and Bash. Includes motion-detection-triggered spot focusing and menu-driven remote camera control.",
+        image: "https://www.activesilicon.com/wp-content/uploads/PRODUCT-AS-Sony-FCB-EV7520A-camera-800x532.jpg",
+        link: "https://github.com/BillyCherres/fcbSeries",
+      },
+      {
+        name: "Sony Alpha Series",
+        description: "Camera control software for Sony Alpha mirrorless systems, delivered as reference example code alongside official Sony firmware for customer engineers.",
+        image: "https://www.pictureline.com/cdn/shop/products/Alpha-a7-IV-Digital-Camera-Body-1.jpg?v=1704236721",
+        link: "https://github.com/BillyCherres/SonyAlphaSeries",
+      },
+    ]
+  },
+  {
+    label: "Full Stack Web",
+    projects: [
+      {
+        name: "Notes App",
+        description: "Full-stack notes application with a REST API backend (notes-api) and React frontend, deployed on Vercel.",
+        image: "https://api.microlink.io/?url=https://notes-web-1.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+        link: "https://notes-web-1.vercel.app/",
+      },
+      {
+        name: "Stat2Games — Grinnell College",
+        description: "Contributed to this platform for teaching statistics through game data, developed during my time at Grinnell College.",
+        image: "https://api.microlink.io/?url=https://stat2games.sites.grinnell.edu/&screenshot=true&meta=false&embed=screenshot.url",
+        link: "https://stat2games.sites.grinnell.edu/",
+      },
+    ]
   }
-  
-  // Run it once when the page loads
-  loadGitHubProjects();
+];
+
+function loadProjects() {
+  projectsStatus.textContent = "";
+  projectsContainer.innerHTML = projectSections.map(section => `
+    <p class="project-section-label">${section.label}</p>
+    <div class="projects-grid">
+      ${section.projects.map(p => `
+        <div class="project-item">
+          <a href="${p.link}" target="_blank" rel="noopener noreferrer">
+            <img class="project-preview" src="${p.image}" alt="${p.name} preview" />
+          </a>
+          <a class="project-title" href="${p.link}" target="_blank" rel="noopener noreferrer">${p.name}</a>
+          <p class="project-desc">${p.description}</p>
+        </div>
+      `).join("")}
+    </div>
+  `).join("");
+}
+
+loadProjects();
 //############################# End of Home Page ################################################
 
 
