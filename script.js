@@ -100,6 +100,17 @@ const projectSections = [
     ]
   },
   {
+    label: "Artificial Intelligence",
+    projects: [
+      {
+        name: "AI Research Paper Analyzer",
+        description: "My introduction to incorporating AI agents into backend infrastructure. Built a RAG pipeline that chunks PDF text into semantic vectors, stores them in ChromaDB, and runs cosine similarity search against the query vector — giving Google Gemini the most relevant context to answer questions about uploaded research papers. Check the README for more.",
+        image: "media/gemini.png",
+        link: "https://github.com/BillyCherres/ai-reaserch-paper-analyzer",
+      },
+    ]
+  },
+  {
     label: "Full Stack Web",
     projects: [
       {
